@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">Weekly Tips</string>
+    <string name="app_name">Weekly Tip #1</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">This is the sample app from the master branch for the course Android Development Weekly Tips.
-        To use the exercise files for a particular weekly tip, check out the branch for that tip.</string>
+    <string name="intro_text">This is the sample app for tip #1, communicating with Snackbar messages.</string>
 </resources>
