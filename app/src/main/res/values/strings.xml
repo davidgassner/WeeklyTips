@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Weekly Tip #10</string>
+    <string name="app_name">Weekly Tip #11</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">This is the sample app for tip #10, managing global data with singletons.</string>
+    <string name="intro_text">This is the sample app for tip #11, sending an SMS message.</string>
 </resources>
