@@ -2,5 +2,5 @@
     <string name="app_name">Weekly Tip #3</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">This is the sample app for tip #5, displaying a data list with draggable rows.</string>
+    <string name="intro_text">This is the sample app for tip #6, creating WebP images in Android Studio.</string>
 </resources>
