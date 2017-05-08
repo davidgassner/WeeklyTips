@@ -26,9 +26,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Run some code
+     * Run some code. If the TextView only displays the intro message, clear it first.
      */
     public void runCode(View view) {
+        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
+            mLog.setText("");
+        }
         log("Running code");
     }
 
