@@ -1,17 +1,21 @@
 package com.example.android.weeklytips;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView mLog;
+    private CoordinatorLayout mCoordinator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
         mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
+
+        mCoordinator = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
     }
 
     /**
@@ -33,6 +39,16 @@ public class MainActivity extends AppCompatActivity {
             mLog.setText("");
         }
         log("Running code");
+
+//        Toast.makeText(this, "This is a Toast message", Toast.LENGTH_LONG).show();
+        Snackbar.make(mCoordinator, "This is a snackbar message", Snackbar.LENGTH_LONG)
+                .setAction("Display Toast", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "This is a Toast message", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();
     }
 
     /**
