@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
     public static final String DIALOG_TAG = "dialog_tag";
 
-    String name = "";
+//    String name = "";
 
     @BindView(R.id.log)
     TextView mLog;
@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity
         }
         log("Running code");
 
-        EditTextDialog dialog = EditTextDialog.newInstance("Enter your name", name);
+        EditTextDialog dialog = EditTextDialog.newInstance("Enter your name",
+                StateManager.getInstance().getName());
         dialog.show(getSupportFragmentManager(), DIALOG_TAG);
     }
 
@@ -83,6 +84,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onEditTextDialogOK(String newValue, String tag) {
         log("You entered a value of " + newValue);
-        name = newValue;
+        StateManager.getInstance().setName(newValue);
     }
 }
