@@ -11,46 +11,63 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private TextView mLog;
-    private CoordinatorLayout mCoordinator;
+
+    @BindView(R.id.log)
+    TextView mLog;
+
+    @BindView(R.id.coordinator_layout)
+    CoordinatorLayout mCoordinator;
+
+    @OnClick(R.id.run_button)
+    public void runCode() {
+        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
+            mLog.setText("");
+        }
+        log("Running code");
+        Snackbar.make(mCoordinator, "This is a snackbar message", Snackbar.LENGTH_LONG)
+                .show();
+    }
+
+    @OnClick(R.id.clear_button)
+    public void clearLog() {
+        mLog.setText("");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ButterKnife.bind(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mLog = (TextView) findViewById(R.id.log);
+//        mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
 
-        mCoordinator = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
+//        mCoordinator = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
     }
 
-    /**
-     * Run some code. If the TextView only displays the intro message, clear it first.
-     */
-    public void runCode(View view) {
-        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
-            mLog.setText("");
-        }
-        log("Running code");
+//    public void runCode(View view) {
+//        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
+//            mLog.setText("");
+//        }
+//        log("Running code");
+//
+//        Snackbar.make(mCoordinator, "This is a snackbar message", Snackbar.LENGTH_LONG)
+//                .show();
+//    }
 
-        Snackbar.make(mCoordinator, "This is a snackbar message", Snackbar.LENGTH_LONG)
-                .show();
-    }
 
-    /**
-     * Clear the output TextView
-     * @param view The button the user clicked
-     */
-    public void clearLog(View view) {
-        mLog.setText("");
-    }
+
 
     /**
      * Logs a message - called initially by runCode()
