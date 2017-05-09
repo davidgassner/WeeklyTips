@@ -40,14 +40,7 @@ public class MainActivity extends AppCompatActivity {
         }
         log("Running code");
 
-//        Toast.makeText(this, "This is a Toast message", Toast.LENGTH_LONG).show();
         Snackbar.make(mCoordinator, "This is a snackbar message", Snackbar.LENGTH_LONG)
-                .setAction("Display Toast", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "This is a Toast message", Toast.LENGTH_SHORT).show();
-                    }
-                })
                 .show();
     }
 
