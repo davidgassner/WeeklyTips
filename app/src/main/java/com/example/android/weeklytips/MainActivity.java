@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
-implements EditTextDialog.EditTextDialogListener {
+        implements EditTextDialog.EditTextDialogListener {
 
     private static final String TAG = "MainActivity";
     public static final String DIALOG_TAG = "dialog_tag";
