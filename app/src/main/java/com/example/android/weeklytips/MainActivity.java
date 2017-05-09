@@ -50,24 +50,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
-
-//        mCoordinator = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
     }
-
-//    public void runCode(View view) {
-//        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
-//            mLog.setText("");
-//        }
-//        log("Running code");
-//
-//        Snackbar.make(mCoordinator, "This is a snackbar message", Snackbar.LENGTH_LONG)
-//                .show();
-//    }
-
-
-
 
     /**
      * Logs a message - called initially by runCode()
