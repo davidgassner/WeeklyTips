@@ -2,14 +2,11 @@ package com.example.android.weeklytips;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
             mLog.setText("");
         }
         log("Running code");
-        Snackbar.make(mCoordinator, "This is a snackbar message", Snackbar.LENGTH_LONG)
-                .show();
     }
 
     @OnClick(R.id.clear_button)
