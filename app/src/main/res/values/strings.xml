@@ -2,5 +2,5 @@
     <string name="app_name">Weekly Tip #4</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">This is the sample app for tip #4, recording a UI test with Espresso.</string>
+    <string name="intro_text">This is the sample app for tip #4, converting a layout to ConstraintLayout.</string>
 </resources>
