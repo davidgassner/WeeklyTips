@@ -8,13 +8,19 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.android.weeklytips.dialogs.EditTextDialog;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+implements EditTextDialog.EditTextDialogListener {
 
     private static final String TAG = "MainActivity";
+    public static final String DIALOG_TAG = "dialog_tag";
+
+    String name = "";
 
     @BindView(R.id.log)
     TextView mLog;
@@ -28,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
             mLog.setText("");
         }
         log("Running code");
+
+        EditTextDialog dialog = EditTextDialog.newInstance("Enter your name", name);
+        dialog.show(getSupportFragmentManager(), DIALOG_TAG);
     }
 
     @OnClick(R.id.clear_button)
@@ -71,4 +80,9 @@ public class MainActivity extends AppCompatActivity {
             mLog.scrollTo(0, 0);
     }
 
+    @Override
+    public void onEditTextDialogOK(String newValue, String tag) {
+        log("You entered a value of " + newValue);
+        name = newValue;
+    }
 }
