@@ -66,7 +66,7 @@ public class PhotoDetailFragment extends Fragment {
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
             ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
-            String imageFile = mItem.content + ".jpg";
+            String imageFile = mItem.content + ".webp";
 
             // get input stream
             InputStream inputStream = null;
