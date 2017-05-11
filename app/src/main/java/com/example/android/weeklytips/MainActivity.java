@@ -1,5 +1,6 @@
 package com.example.android.weeklytips;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +21,6 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "MainActivity";
     public static final String DIALOG_TAG = "dialog_tag";
 
-//    String name = "";
-
     @BindView(R.id.log)
     TextView mLog;
 
@@ -30,14 +29,8 @@ public class MainActivity extends AppCompatActivity
 
     @OnClick(R.id.run_button)
     public void runCode() {
-        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
-            mLog.setText("");
-        }
-        log("Running code");
-
-        EditTextDialog dialog = EditTextDialog.newInstance("Enter your name",
-                StateManager.getInstance().getName());
-        dialog.show(getSupportFragmentManager(), DIALOG_TAG);
+        Intent intent = new Intent(this, PhotoListActivity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.clear_button)

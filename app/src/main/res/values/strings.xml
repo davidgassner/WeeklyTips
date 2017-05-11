@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Weekly Tip #5</string>
+    <string name="app_name">Weekly Tip #6</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">This is the sample app for tip #5, managing global data with singleton classes.</string>
+    <string name="intro_text">This is the sample app for tip #6, replacing JPG files with WEBP files.</string>
+    <string name="title_photo_list">Photos</string>
+    <string name="title_photo_detail">Photo Detail</string>
 </resources>

@@ -1,0 +1,10 @@
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/imageView"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_margin="16dp"
+    android:adjustViewBounds="true"
+    android:contentDescription="apple_pie.jpg"
+    android:src="@drawable/apple_pie"
+    tools:ignore="HardcodedText" />
