@@ -2,5 +2,5 @@
     <string name="app_name">Weekly Tip #8</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">This is the sample app for tip #8, managing layouts with ConstraintLayout.</string>
+    <string name="intro_text">This is the sample app for tip #8, programming with Kotlin.</string>
 </resources>
