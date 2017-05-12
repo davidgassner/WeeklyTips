@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
         }
         log("Running code");
 
-        EditTextDialog dialog = EditTextDialog.newInstance("Enter your name", name);
+        EditTextDialog dialog = EditTextDialog.Companion.newInstance("Enter your name", name);
         dialog.show(getSupportFragmentManager(), DIALOG_TAG);
     }
 
