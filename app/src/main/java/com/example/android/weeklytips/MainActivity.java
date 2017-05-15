@@ -28,19 +28,9 @@ public class MainActivity extends AppCompatActivity {
         Button mRunButton = (Button) findViewById(R.id.run_button);
         Button mClearButton = (Button) findViewById(R.id.clear_button);
 
-        mRunButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                runCode(v);
-            }
-        });
+        mRunButton.setOnClickListener(this::runCode);
 
-        mClearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearLog(v);
-            }
-        });
+        mClearButton.setOnClickListener(this::clearLog);
     }
 
     /**
