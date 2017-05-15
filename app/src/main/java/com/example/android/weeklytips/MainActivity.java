@@ -8,6 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.android.weeklytips.events.MessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -23,6 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
         mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
+
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     /**
@@ -66,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
             mLog.scrollTo(0, scrollAmount);
         else
             mLog.scrollTo(0, 0);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        log(event.getMessage());
     }
 
 }

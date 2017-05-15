@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.android.weeklytips.events.MessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
@@ -53,11 +57,15 @@ public class MyIntentService extends IntentService {
      */
     private void handleActionFoo(String name, String job) {
         Log.i(TAG, "handleActionFoo: starting service");
+        MessageEvent event = new MessageEvent("handleActionFoo: starting service");
+        EventBus.getDefault().post(event);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         Log.i(TAG, "handleActionFoo: name=" + name + ", job=" + job);
+        event = new MessageEvent("handleActionFoo: name=" + name + ", job=" + job);
+        EventBus.getDefault().post(event);
     }
 }
