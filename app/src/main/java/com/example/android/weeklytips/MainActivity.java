@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
             mLog.setText("");
         }
         log("Running code");
+
+        MyIntentService.startActionFoo(this, "David", "Programmer");
     }
 
     /**
