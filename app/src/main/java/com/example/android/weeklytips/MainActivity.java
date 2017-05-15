@@ -3,16 +3,16 @@ package com.example.android.weeklytips;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private TextView mLog;
+    private EditText mNameText, mJobText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,33 +22,25 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mLog = (TextView) findViewById(R.id.log);
-        mLog.setMovementMethod(new ScrollingMovementMethod());
+        Button run_button = (Button) findViewById(R.id.run_button);
+        run_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                runCode(v);
+            }
+        });
 
-        Button mRunButton = (Button) findViewById(R.id.run_button);
-        Button mClearButton = (Button) findViewById(R.id.clear_button);
-
-        mRunButton.setOnClickListener(this::runCode);
-
-        mClearButton.setOnClickListener(this::clearLog);
+        mNameText = (EditText) findViewById(R.id.name_text);
+        mJobText = (EditText) findViewById(R.id.job_text);
     }
 
     /**
-     * Run some code. If the TextView only displays the intro message, clear it first.
+     * Run some code.
      */
     public void runCode(View view) {
-        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
-            mLog.setText("");
-        }
-        log("Running code");
-    }
-
-    /**
-     * Clear the output TextView
-     * @param view The button the user clicked
-     */
-    public void clearLog(View view) {
-        mLog.setText("");
+        String name = mNameText.getText().toString();
+        String job = mJobText.getText().toString();
+        log(String.format("Name: %s, Job: %s", name, job));
     }
 
     /**
@@ -58,20 +50,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void log(String message) {
         Log.i(TAG, message);
-        mLog.append(message + "\n");
-        adjustScroll();
-    }
-
-    /**
-     * Adjusts scroll vertically to ensure last line is displayed
-     */
-    private void adjustScroll() {
-        final int scrollAmount = mLog.getLayout()
-                .getLineTop(mLog.getLineCount()) - mLog.getHeight();
-        if (scrollAmount > 0)
-            mLog.scrollTo(0, scrollAmount);
-        else
-            mLog.scrollTo(0, 0);
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }

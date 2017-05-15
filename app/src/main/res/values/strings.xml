@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Weekly Tip #11</string>
     <string name="title_run_code">Run code</string>
-    <string name="title_clear">Clear log</string>
     <string name="intro_text">This is the sample app for tip #11, programming with Java 8 syntax.</string>
+    <string name="your_name">Your name</string>
+    <string name="your_job">Your job</string>
 </resources>
