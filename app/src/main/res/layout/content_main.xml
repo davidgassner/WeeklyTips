@@ -32,8 +32,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:onClick="addData"
-        android:text="@string/add_data"
+        android:onClick="playMusic"
+        android:text="@string/play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -44,8 +44,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:onClick="queryData"
-        android:text="@string/query_data"
+        android:onClick="stopMusic"
+        android:text="@string/stop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/add_data_button"
         app:layout_constraintRight_toRightOf="@+id/clear_button"/>

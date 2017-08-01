@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void addData(View view) {
+    public void playMusic(View view) {
     }
 
-    public void queryData(View view) {
+    public void stopMusic(View view) {
     }
 
     /**
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Logs a message - called initially by addData()
+     * Logs a message - called initially by playMusic()
      *
      * @param message The message to display
      */
