@@ -8,12 +8,18 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.android.weeklytips.MainActivity">
 
-    <ListView
+    <com.mobeta.android.dslv.DragSortListView
         android:id="@+id/my_list_view"
         android:layout_width="0px"
         android:layout_height="0px"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:drag_enabled="true"
+        app:drag_handle_id="@+id/action_button"
+        app:drag_start_mode="onDown"
+        app:drag_scroll_start="0.33"
+        app:float_alpha="0.6"
+        app:slide_shuffle_speed="0.3"/>
 </android.support.constraint.ConstraintLayout>

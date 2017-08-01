@@ -9,6 +9,7 @@ import android.widget.ListView;
 import com.example.android.weeklytips.data.DataItem;
 import com.example.android.weeklytips.data.DataProvider;
 import com.example.android.weeklytips.data.MyListAdapter;
+import com.mobeta.android.dslv.DragSortListView;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private List<DataItem> mDataList = DataProvider.dataList;
-    private ListView mListView;
+    private DragSortListView mListView;
 
     @Override
 
@@ -28,11 +29,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mListView = (ListView) findViewById(R.id.my_list_view);
+        mListView = (DragSortListView) findViewById(R.id.my_list_view);
 
-        MyListAdapter myAdapter = new MyListAdapter(this, mDataList);
+        final MyListAdapter myAdapter = new MyListAdapter(this, mDataList);
         mListView.setAdapter(myAdapter);
         log("Displaying data");
+
+        mListView.setDropListener(new DragSortListView.DropListener() {
+            @Override
+            public void drop(int from, int to) {
+                DataItem item = mDataList.get(from);
+                myAdapter.remove(item);
+                myAdapter.insert(item, to);
+                myAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     /**

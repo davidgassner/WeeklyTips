@@ -15,7 +15,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:clickable="true"
+        android:clickable="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:tint="@android:color/white"
