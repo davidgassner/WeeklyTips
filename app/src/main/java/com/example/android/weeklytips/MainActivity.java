@@ -3,17 +3,24 @@ package com.example.android.weeklytips;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.ListView;
+
+import com.example.android.weeklytips.data.DataItem;
+import com.example.android.weeklytips.data.DataProvider;
+import com.example.android.weeklytips.data.MyListAdapter;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private TextView mLog;
+
+    private List<DataItem> mDataList = DataProvider.dataList;
+    private ListView mListView;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -21,26 +28,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mLog = (TextView) findViewById(R.id.log);
-        mLog.setMovementMethod(new ScrollingMovementMethod());
-    }
+        mListView = (ListView) findViewById(R.id.my_list_view);
 
-    /**
-     * Run some code. If the TextView only displays the intro message, clear it first.
-     */
-    public void runCode(View view) {
-        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
-            mLog.setText("");
-        }
-        log("Running code");
-    }
-
-    /**
-     * Clear the output TextView
-     * @param view The button the user clicked
-     */
-    public void clearLog(View view) {
-        mLog.setText("");
+        MyListAdapter myAdapter = new MyListAdapter(this, mDataList);
+        mListView.setAdapter(myAdapter);
+        log("Displaying data");
     }
 
     /**
@@ -50,20 +42,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void log(String message) {
         Log.i(TAG, message);
-        mLog.append(message + "\n");
-        adjustScroll();
-    }
-
-    /**
-     * Adjusts scroll vertically to ensure last line is displayed
-     */
-    private void adjustScroll() {
-        final int scrollAmount = mLog.getLayout()
-                .getLineTop(mLog.getLineCount()) - mLog.getHeight();
-        if (scrollAmount > 0)
-            mLog.scrollTo(0, scrollAmount);
-        else
-            mLog.scrollTo(0, 0);
     }
 
 }
