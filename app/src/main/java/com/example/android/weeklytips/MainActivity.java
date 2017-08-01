@@ -8,10 +8,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.android.weeklytips.data.Dog;
+
+import java.util.Collection;
+
+import io.realm.Realm;
+import io.realm.exceptions.RealmPrimaryKeyConstraintException;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView mLog;
+
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +33,32 @@ public class MainActivity extends AppCompatActivity {
         mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
 
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
+
     }
 
     public void addData(View view) {
+
+        try {
+            realm.beginTransaction();
+            realm.copyToRealm(new Dog(1, "Scruffy", 8));
+            realm.copyToRealm(new Dog(2, "Minnie", 3));
+            realm.commitTransaction();
+        } catch (RealmPrimaryKeyConstraintException e) {
+            realm.cancelTransaction();
+        }
+        clearLog(null);
+        log("Data added to Realm");
     }
 
     public void queryData(View view) {
+
+        Collection<Dog> dogs = realm.where(Dog.class).findAll().sort("age");
+        for (Dog dog :
+                dogs) {
+            log(dog.toString());
+        }
     }
 
     /**
