@@ -3,4 +3,6 @@
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
     <string name="intro_text">Tip 14: Persisting data with Realm.</string>
+    <string name="add_data">Add data</string>
+    <string name="query_data">Query data</string>
 </resources>

@@ -23,16 +23,13 @@ public class MainActivity extends AppCompatActivity {
 
         mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
+
     }
 
-    /**
-     * Run some code. If the TextView only displays the intro message, clear it first.
-     */
-    public void runCode(View view) {
-        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
-            mLog.setText("");
-        }
-        log("Running code");
+    public void addData(View view) {
+    }
+
+    public void queryData(View view) {
     }
 
     /**
@@ -44,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Logs a message - called initially by runCode()
+     * Logs a message - called initially by addData()
      *
      * @param message The message to display
      */
