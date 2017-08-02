@@ -1,8 +1,14 @@
 package com.example.android.weeklytips;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.SmsManager;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +17,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    private static final int REQUEST_PERMISSION = 1001;
+    private static final String SMS_NUMBER = "12069376499";
     private TextView mLog;
 
     @Override
@@ -23,10 +31,18 @@ public class MainActivity extends AppCompatActivity {
 
         mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
+
+        checkPermissions();
     }
 
     public void runCode(View view) {
-        log("Running code");
+        if (checkPermissions()) {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(SMS_NUMBER, null,
+                    "this is a message from Android",
+                    null, null);
+            log("Message sent!");
+        }
     }
 
     /**
@@ -64,4 +80,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private boolean checkPermissions() {
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.SEND_SMS);
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            log("Permission already granted");
+            return true;
+        } else {
+            log("Permission not granted yet");
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.SEND_SMS},
+                    REQUEST_PERMISSION);
+            return false;
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_PERMISSION) {
+            if (grantResults.length > 0 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                log("Permission granted");
+            } else {
+                log("Permission needed to send an SMS");
+            }
+        }
+
+    }
 }
