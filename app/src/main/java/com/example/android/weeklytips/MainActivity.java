@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private TextView mLog;
 
+    private static final String AUDIO_FILE_NAME = "pleasant_music.mp3";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
