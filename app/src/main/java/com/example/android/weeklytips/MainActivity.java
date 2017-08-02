@@ -40,12 +40,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void playMusic(View view) {
+        if (!fileHelper.copyAssetToStorage(AUDIO_FILE_NAME)) return;
+        File file = fileHelper.getFile(AUDIO_FILE_NAME);
+        if (file.exists()) {
+            log("file exists");
+            playAudio();
+        } else {
+            log("file doesn't exist");
+        }
+
     }
 
     private void playAudio() {
+        player = new MediaPlayer();
+        try {
+            player.setDataSource(
+                    fileHelper.getFile(AUDIO_FILE_NAME).getPath());
+            player.prepare();
+            player.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void stopMusic(View view) {
+        if (player != null) {
+            try {
+                player.stop();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**

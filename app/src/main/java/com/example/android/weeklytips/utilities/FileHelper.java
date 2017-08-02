@@ -28,7 +28,21 @@ public class FileHelper {
             return true;
         }
 
-        return false;
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
+
+        try {
+            inputStream = context.getAssets().open(fileName);
+            outputStream = new FileOutputStream(file);
+            copy(inputStream, outputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            closeStream(inputStream);
+            closeStream(outputStream);
+        }
+        return true;
     }
 
     public File getFile(String fileName) {
