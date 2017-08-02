@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
         mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
-
     }
 
     public void runCode(View view) {
@@ -53,12 +52,16 @@ public class MainActivity extends AppCompatActivity {
      * Adjusts scroll vertically to ensure last line is displayed
      */
     private void adjustScroll() {
-        final int scrollAmount = mLog.getLayout()
-                .getLineTop(mLog.getLineCount()) - mLog.getHeight();
-        if (scrollAmount > 0)
-            mLog.scrollTo(0, scrollAmount);
-        else
-            mLog.scrollTo(0, 0);
+        try {
+            final int scrollAmount = mLog.getLayout()
+                    .getLineTop(mLog.getLineCount()) - mLog.getHeight();
+            if (scrollAmount > 0)
+                mLog.scrollTo(0, scrollAmount);
+            else
+                mLog.scrollTo(0, 0);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
 }
