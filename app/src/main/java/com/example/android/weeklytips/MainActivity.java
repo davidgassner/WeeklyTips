@@ -1,5 +1,6 @@
 package com.example.android.weeklytips;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,10 +9,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.android.weeklytips.utilities.FileHelper;
+
+import java.io.File;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView mLog;
+
+    private MediaPlayer player;
+    private FileHelper fileHelper;
 
     private static final String AUDIO_FILE_NAME = "pleasant_music.mp3";
 
@@ -26,9 +35,14 @@ public class MainActivity extends AppCompatActivity {
         mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
 
+        fileHelper = new FileHelper(this);
+
     }
 
     public void playMusic(View view) {
+    }
+
+    private void playAudio() {
     }
 
     public void stopMusic(View view) {
