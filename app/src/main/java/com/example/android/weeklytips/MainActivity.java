@@ -1,5 +1,11 @@
 package com.example.android.weeklytips;
 
+import android.annotation.TargetApi;
+import android.content.res.AssetFileDescriptor;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +14,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -15,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String AUDIO_FILE_NAME1 = "cartoon_fall.wav";
     private static final String AUDIO_FILE_NAME2 = "cartoon_whoop.wav";
+
+    private SoundPool sounds;
+    List<Integer> soundIds = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +39,43 @@ public class MainActivity extends AppCompatActivity {
 
         mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            createNewSoundPool();
+        } else {
+            createOldSoundPool();
+        }
+
+        try {
+            AssetFileDescriptor descriptor1 =
+                    getAssets().openFd(AUDIO_FILE_NAME1);
+            AssetFileDescriptor descriptor2 =
+                    getAssets().openFd(AUDIO_FILE_NAME2);
+            soundIds.add(sounds.load(descriptor1, 1));
+            soundIds.add(sounds.load(descriptor2, 1));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void createOldSoundPool() {
+        sounds = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void createNewSoundPool() {
+        AudioAttributes attributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+        sounds = new SoundPool.Builder()
+                .setAudioAttributes(attributes)
+                .build();
     }
 
     public void playAudio(int fileNumber) {
+        sounds.play(soundIds.get(fileNumber), 1f, 1f, 1, 0, 1);
     }
 
     /**
@@ -68,8 +115,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void playAudioFile1(View view) {
+        playAudio(0);
     }
 
     public void playAudioFile2(View view) {
+        playAudio(1);
     }
 }
