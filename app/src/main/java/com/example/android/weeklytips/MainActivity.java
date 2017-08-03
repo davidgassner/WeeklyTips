@@ -2,8 +2,10 @@ package com.example.android.weeklytips;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
@@ -14,6 +16,10 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +47,38 @@ public class MainActivity extends AppCompatActivity {
      * Run the code for this exercise
      */
     public void runCode(View view) {
+
+        List<String> audioList = new ArrayList<>();
+        String[] proj = {MediaStore.Audio.Media._ID,
+                MediaStore.Audio.Media.DISPLAY_NAME,
+                MediaStore.Audio.Media.DURATION};
+
+        Cursor audioCursor =
+                getContentResolver()
+                        .query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                                proj, null, null, null);
+        if (audioCursor != null) {
+            while (audioCursor.moveToNext()) {
+                int displayNameIndex = audioCursor.getColumnIndexOrThrow(
+                        MediaStore.Audio.Media.DISPLAY_NAME);
+                int durationIndex = audioCursor.getColumnIndexOrThrow(
+                        MediaStore.Audio.Media.DURATION);
+
+                String fileInfo = String.format(Locale.getDefault(),
+                        "%s (%s ms)",
+                        audioCursor.getString(displayNameIndex),
+                        audioCursor.getInt(durationIndex));
+
+                audioList.add(fileInfo);
+            }
+            audioCursor.close();
+        }
+
+        log("Audio files found:");
+        for (String audioFile: audioList) {
+            log(audioFile);
+        }
+        log("list complete!");
     }
 
     /**
