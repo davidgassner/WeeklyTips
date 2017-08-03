@@ -1,6 +1,5 @@
 package com.example.android.weeklytips;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,17 +11,16 @@ import android.widget.TextView;
 import com.example.android.weeklytips.utilities.FileHelper;
 
 import java.io.File;
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView mLog;
 
-    private MediaPlayer player;
-    private FileHelper fileHelper;
+    private static final String AUDIO_FILE_NAME1 = "cartoon_fall.wav";
+    private static final String AUDIO_FILE_NAME2 = "cartoon_whoop.wav";
 
-    private static final String AUDIO_FILE_NAME = "pleasant_music.mp3";
+    private FileHelper fileHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,37 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void playMusic(View view) {
-        if (!fileHelper.copyAssetToStorage(AUDIO_FILE_NAME)) return;
-        File file = fileHelper.getFile(AUDIO_FILE_NAME);
+    public void playAudio(String fileName) {
+        if (!fileHelper.copyAssetToStorage(fileName)) return;
+        File file = fileHelper.getFile(fileName);
         if (file.exists()) {
             log("file exists");
-            playAudio();
         } else {
             log("file doesn't exist");
-        }
-
-    }
-
-    private void playAudio() {
-        player = new MediaPlayer();
-        try {
-            player.setDataSource(
-                    fileHelper.getFile(AUDIO_FILE_NAME).getPath());
-            player.prepare();
-            player.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void stopMusic(View view) {
-        if (player != null) {
-            try {
-                player.stop();
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -82,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Logs a message - called initially by playMusic()
+     * Logs a message - called initially by playAudio()
      *
      * @param message The message to display
      */
@@ -104,4 +78,11 @@ public class MainActivity extends AppCompatActivity {
             mLog.scrollTo(0, 0);
     }
 
+    public void playAudioFile1(View view) {
+        playAudio(AUDIO_FILE_NAME1);
+    }
+
+    public void playAudioFile2(View view) {
+        playAudio(AUDIO_FILE_NAME2);
+    }
 }

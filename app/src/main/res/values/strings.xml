@@ -2,9 +2,7 @@
     <string name="app_name">Weekly Tips</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">Tip 15: Playing audio from the assets directory.</string>
-    <string name="add_data">Add data</string>
-    <string name="query_data">Query data</string>
-    <string name="play">Play</string>
-    <string name="stop">Stop</string>
+    <string name="intro_text">Tip 18: Playing audio with SoundPool.</string>
+    <string name="sound_1">Sound 1</string>
+    <string name="sound_2">Sound 2</string>
 </resources>
