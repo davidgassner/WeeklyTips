@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     log("Permission granted!");
                 } else {
-                    log("Permission to send an SMS is needed!");
+                    log("Permission to read external storage is needed!");
                 }
                 break;
         }
