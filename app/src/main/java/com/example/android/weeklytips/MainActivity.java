@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         mLog.setMovementMethod(new ScrollingMovementMethod());
 
         fileHelper = new FileHelper(this);
-
     }
 
     public void playAudio(String fileName) {
