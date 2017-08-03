@@ -1,6 +1,13 @@
 package com.example.android.weeklytips;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
@@ -11,6 +18,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    private static final int REQUEST_PERMISSION = 1001;
     private TextView mLog;
 
     @Override
@@ -24,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            checkPermissions();
+        }
     }
 
     /**
@@ -66,5 +77,38 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    private boolean checkPermissions() {
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            log("Permission already granted!");
+            return true;
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    REQUEST_PERMISSION);
+            return false;
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_PERMISSION:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    log("Permission granted!");
+                } else {
+                    log("Permission to send an SMS is needed!");
+                }
+                break;
+        }
+    }
+
 
 }
