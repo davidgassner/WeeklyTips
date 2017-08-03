@@ -2,6 +2,5 @@
     <string name="app_name">Weekly Tips</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">This is the sample app from the master branch for the course Android Development Weekly Tips.
-        To use the exercise files for a particular weekly tip, check out the branch for that tip.</string>
+    <string name="intro_text">Tip 19: Display the APK build date.</string>
 </resources>
