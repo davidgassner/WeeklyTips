@@ -26,22 +26,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void addData(View view) {
-    }
-
-    public void queryData(View view) {
+    /**
+     * Run the code for this exercise
+     */
+    public void runCode(View view) {
     }
 
     /**
      * Clear the output TextView
-     * @param view The button the user clicked
      */
     public void clearLog(View view) {
         mLog.setText("");
     }
 
     /**
-     * Logs a message - called initially by addData()
+     * Logs a message - called initially by runCode()
      *
      * @param message The message to display
      */

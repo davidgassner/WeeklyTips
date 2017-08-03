@@ -32,23 +32,10 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:onClick="addData"
-        android:text="@string/add_data"
+        android:onClick="runCode"
+        android:text="@string/run_code"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
-
-    <Button
-        android:id="@+id/query_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:onClick="queryData"
-        android:text="@string/query_data"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/add_data_button"
-        app:layout_constraintRight_toRightOf="@+id/clear_button"/>
 
     <Button
         android:id="@+id/clear_button"

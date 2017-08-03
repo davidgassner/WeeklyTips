@@ -3,6 +3,5 @@
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
     <string name="intro_text">Tip 14: Get a list of audio files.</string>
-    <string name="add_data">Add data</string>
-    <string name="query_data">Query data</string>
+    <string name="run_code">Run code</string>
 </resources>
