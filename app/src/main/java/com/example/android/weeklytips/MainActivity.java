@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.android.weeklytips.model.Person;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -32,8 +34,14 @@ public class MainActivity extends AppCompatActivity {
         if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
             mLog.setText("");
         }
-        log("Running code");
 
+        Person p1 = new Person("David", 50);
+        log(p1.toString());
+        log("Name: " + p1.getName());
+        log("Age: " + p1.getAge());
+
+        p1.setName("new value");
+        log("Name: " + p1.getName());
     }
 
     /**
