@@ -1,7 +1,5 @@
 package com.example.android.weeklytips;
 
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,10 +7,6 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,23 +34,6 @@ public class MainActivity extends AppCompatActivity {
         }
         log("Running code");
 
-        PackageInfo pInfo = null;
-        try {
-            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        log("Version code: " + pInfo.versionCode);
-        log("Version name: " + pInfo.versionName);
-
-        DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
-        String installDate = df.format(pInfo.lastUpdateTime);
-        log("Install date: " + installDate);
-
-        Date buildDate = new Date(BuildConfig.BUILD_TIME);
-        log("Build date: " + df.format(buildDate));
     }
 
     /**
