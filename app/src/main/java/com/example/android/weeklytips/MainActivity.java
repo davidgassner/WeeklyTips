@@ -26,34 +26,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void addData(View view) {
+    public void runCode(View view) {
+        log("Running code");
     }
 
-    public void queryData(View view) {
-    }
-
-    /**
-     * Clear the output TextView
-     * @param view The button the user clicked
-     */
     public void clearLog(View view) {
         mLog.setText("");
     }
 
-    /**
-     * Logs a message - called initially by addData()
-     *
-     * @param message The message to display
-     */
     private void log(String message) {
         Log.i(TAG, message);
         mLog.append(message + "\n");
         adjustScroll();
     }
 
-    /**
-     * Adjusts scroll vertically to ensure last line is displayed
-     */
     private void adjustScroll() {
         final int scrollAmount = mLog.getLayout()
                 .getLineTop(mLog.getLineCount()) - mLog.getHeight();
