@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void runCode(View view) {
+        clearLog(null);
         log("Running code");
     }
 
