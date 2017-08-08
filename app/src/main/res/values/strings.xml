@@ -2,5 +2,5 @@
     <string name="app_name">Weekly Tips</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">Tip 20: Create data classes with Kotlin.</string>
+    <string name="intro_text">Tip 22: Explore new reports in the Play Console.</string>
 </resources>
