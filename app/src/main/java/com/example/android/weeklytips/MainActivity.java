@@ -1,7 +1,7 @@
 package com.example.android.weeklytips;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.example.android.weeklytips.model.DataItem;
 
-import java.io.IOException;
-
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,8 +35,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void runCode(View view) {
         clearLog(null);
-        WebServiceTask task = new WebServiceTask();
-        task.execute();
+        MyWebService webService = MyWebService.retrofit.create(MyWebService.class);
+        Call<DataItem[]> call = webService.dataItems();
+
+        call.enqueue(new Callback<DataItem[]>() {
+            @Override
+            public void onResponse(@NonNull Call<DataItem[]> call,
+                                   @NonNull Response<DataItem[]> response) {
+                if (response.isSuccessful()) {
+                    for (DataItem item :
+                            response.body()) {
+                        log(item.toString());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<DataItem[]> call, @NonNull Throwable t) {
+                log("There was a failure");
+            }
+        });
     }
 
     public void clearLog(View view) {
@@ -57,29 +75,5 @@ public class MainActivity extends AppCompatActivity {
         else
             mLog.scrollTo(0, 0);
     }
-
-    private class WebServiceTask extends AsyncTask<Void, Void, DataItem[]> {
-        @Override
-        protected DataItem[] doInBackground(Void... params) {
-            MyWebService webService = MyWebService.retrofit.create(MyWebService.class);
-            Call<DataItem[]> call = webService.dataItems();
-
-            try {
-                return call.execute().body();
-            } catch (IOException e) {
-                log(e.getMessage());
-                return null;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(DataItem[] dataItems) {
-            for (DataItem item :
-                    dataItems) {
-                log(item.toString());
-            }
-        }
-    }
-
 
 }
