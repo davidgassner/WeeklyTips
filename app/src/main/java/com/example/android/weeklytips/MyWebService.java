@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface MyWebService {
 
@@ -19,5 +20,8 @@ public interface MyWebService {
 
     @GET(FEED)
     Call<DataItem[]> dataItems();
+
+    @GET(FEED)
+    Call<DataItem[]> dataItems(@Query("category") String category);
 
 }

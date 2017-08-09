@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public void runCode(View view) {
         clearLog(null);
         MyWebService webService = MyWebService.retrofit.create(MyWebService.class);
-        Call<DataItem[]> call = webService.dataItems();
+        Call<DataItem[]> call = webService.dataItems("Desserts");
 
         call.enqueue(new Callback<DataItem[]>() {
             @Override
