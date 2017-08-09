@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Weekly Tips</string>
-    <string name="intro_text">Tip 24: Make an asynchronous web service call with Retrofit.</string>
+    <string name="intro_text">Tip 25: Send a GET request parameter with Retrofit.</string>
     <string name="run_code">Run code</string>
     <string name="clear_log">Clear log</string>
 </resources>
