@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,27 +24,35 @@ public class MainActivity extends AppCompatActivity {
 
         mLog = (TextView) findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
+
+        Button runButton = (Button) findViewById(R.id.run_button);
+        runButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
+                    mLog.setText("");
+                }
+                runCode();
+            }
+        });
+
+        Button clearButton = (Button) findViewById(R.id.clear_button);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLog.setText("");
+            }
+        });
     }
 
     /**
      * Run some code. If the TextView only displays the intro message, clear it first.
      */
-    public void runCode(View view) {
-        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
-            mLog.setText("");
-        }
+    public void runCode() {
         log("Running code");
     }
 
-    /**
-     * Clear the output TextView
-     * @param view The button the user clicked
-     */
-    public void clearLog(View view) {
-        mLog.setText("");
-    }
-
-    /**
+     /**
      * Logs a message - called initially by runCode()
      *
      * @param message The message to display
