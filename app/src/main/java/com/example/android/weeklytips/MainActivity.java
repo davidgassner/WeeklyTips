@@ -19,13 +19,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mLog = (TextView) findViewById(R.id.log);
+        mLog = findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
 
-        Button runButton = (Button) findViewById(R.id.run_button);
+        Button runButton = findViewById(R.id.run_button);
         runButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button clearButton = (Button) findViewById(R.id.clear_button);
+        Button clearButton = findViewById(R.id.clear_button);
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
