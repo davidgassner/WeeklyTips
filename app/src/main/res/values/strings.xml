@@ -2,5 +2,5 @@
     <string name="app_name">Weekly Tips</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">Remove redundant casting syntax in calls to findViewById()</string>
+    <string name="intro_text">Create an adaptive launcher icon</string>
 </resources>
