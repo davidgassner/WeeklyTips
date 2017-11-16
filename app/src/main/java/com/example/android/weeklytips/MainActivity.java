@@ -8,35 +8,68 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.android.weeklytips.database.NotesDatabase;
+import com.example.android.weeklytips.model.Note;
+
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView mLog;
+
+    private NotesDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mLog = (TextView) findViewById(R.id.log);
+        mLog = findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
+
+        db = NotesDatabase.getInstance(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        NotesDatabase.destroyInstance();
+        super.onDestroy();
     }
 
     /**
      * Run some code. If the TextView only displays the intro message, clear it first.
      */
     public void runCode(View view) {
-        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
-            mLog.setText("");
+
+        int deleted = db.noteDao().deleteAll();
+        log(deleted + " notes deleted");
+
+        Note note1 = new Note("My first note");
+        Note note2 = new Note("My second note");
+        db.noteDao().insertAll(note1, note2);
+
+        int count = db.noteDao().getCount();
+        log("There are " + count + " notes.");
+
+        List<Note> notes = db.noteDao().getAll();
+
+        for (Note note :
+                notes) {
+            log(note.toString());
         }
-        log("Running code");
+
+        count = db.noteDao().getCount();
+        log("There are " + count + " notes.");
+
     }
 
     /**
      * Clear the output TextView
+     *
      * @param view The button the user clicked
      */
     public void clearLog(View view) {
