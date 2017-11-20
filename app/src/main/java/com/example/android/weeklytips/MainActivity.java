@@ -11,6 +11,10 @@ import android.widget.TextView;
 import com.example.android.weeklytips.database.NotesDatabase;
 import com.example.android.weeklytips.model.Note;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,11 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
         db = NotesDatabase.getInstance(this);
 
+        EventBus.getDefault().register(this);
+
     }
 
     @Override
     protected void onDestroy() {
         NotesDatabase.destroyInstance();
+        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 
@@ -44,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
      * Run some code. If the TextView only displays the intro message, clear it first.
      */
     public void runCode(View view) {
+
         int deleted = db.noteDao().deleteAll();
         log(deleted + " notes deleted");
 
@@ -60,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         log("Number of notes: " + count);
+
     }
 
     /**
@@ -69,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public void clearLog(View view) {
         mLog.setText("");
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        log(event.getMessage());
     }
 
     /**
