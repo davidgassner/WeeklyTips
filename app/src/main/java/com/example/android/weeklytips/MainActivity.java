@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private TextView mLog;
 
-    private NotesDatabase db;
+    NotesDatabase mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         mLog = findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
 
-        db = NotesDatabase.getInstance(this);
+        mDatabase = NotesDatabase.getInstance(this);
+
     }
 
     @Override
@@ -45,25 +46,19 @@ public class MainActivity extends AppCompatActivity {
      */
     public void runCode(View view) {
 
-        int deleted = db.noteDao().deleteAll();
-        log(deleted + " notes deleted");
+        int deleted = mDatabase.noteDao().deleteAll();
+        log("Notes deleted: " + deleted);
 
-        Note note1 = new Note("My first note");
-        Note note2 = new Note("My second note");
-        db.noteDao().insertAll(note1, note2);
+        Note note1 = new Note("This is note 1");
+        Note note2 = new Note("This is note 2");
+        mDatabase.noteDao().insertAll(note1, note2);
+        int count = mDatabase.noteDao().getCount();
+        log("Number of notes: " + count);
 
-        int count = db.noteDao().getCount();
-        log("There are " + count + " notes.");
-
-        List<Note> notes = db.noteDao().getAll();
-
-        for (Note note :
-                notes) {
+        List<Note> notes = mDatabase.noteDao().getAll();
+        for (Note note : notes) {
             log(note.toString());
         }
-
-        count = db.noteDao().getCount();
-        log("There are " + count + " notes.");
 
     }
 

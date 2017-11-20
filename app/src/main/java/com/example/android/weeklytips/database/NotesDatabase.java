@@ -10,7 +10,7 @@ import com.example.android.weeklytips.model.Note;
 
 @Database(entities = {Note.class}, version = 1)
 @TypeConverters({DateConverter.class})
-public abstract class NotesDatabase extends RoomDatabase{
+public abstract class NotesDatabase extends RoomDatabase {
 
     private static NotesDatabase instance;
 
@@ -18,8 +18,8 @@ public abstract class NotesDatabase extends RoomDatabase{
 
     public static NotesDatabase getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(),
-                    NotesDatabase.class, "app-database")
+            instance = Room.inMemoryDatabaseBuilder(context.getApplicationContext(),
+                    NotesDatabase.class)
                     .allowMainThreadQueries()
                     .build();
         }
