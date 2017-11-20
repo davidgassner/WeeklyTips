@@ -2,5 +2,5 @@
     <string name="app_name">Weekly Tips</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">Explore a device\'s file system.</string>
+    <string name="intro_text">Inspect memory usage with the Android Profiler.</string>
 </resources>
