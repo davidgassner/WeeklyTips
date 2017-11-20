@@ -1,5 +1,6 @@
 package com.example.android.weeklytips;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    private static final String PREFS_NAME = "my_prefs";
     private TextView mLog;
 
     @Override
@@ -32,7 +34,12 @@ public class MainActivity extends AppCompatActivity {
         if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
             mLog.setText("");
         }
-        log("Running code");
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        settings.edit()
+                .putString("name", "David")
+                .apply();
+        log("Wrote to preferences with name of " + PREFS_NAME);
+
     }
 
     /**
