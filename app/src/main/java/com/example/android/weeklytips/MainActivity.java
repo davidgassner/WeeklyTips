@@ -9,11 +9,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.android.weeklytips.database.NotesDatabase;
+import com.example.android.weeklytips.model.Note;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView mLog;
+    private NotesDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         mLog = findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
+
+        db = NotesDatabase.getInstance(this);
 
     }
 
@@ -38,6 +44,22 @@ public class MainActivity extends AppCompatActivity {
      * Run some code. If the TextView only displays the intro message, clear it first.
      */
     public void runCode(View view) {
+        int deleted = db.noteDao().deleteAll();
+        log(deleted + " notes deleted");
+
+        Note note1 = new Note("This is note 1");
+        Note note2 = new Note("This is note 2");
+        db.noteDao().insertAll(note1, note2);
+
+        int count = db.noteDao().getCount();
+
+        List<Note> notes = db.noteDao().getAll();
+        for (Note note :
+                notes) {
+            log(note.toString());
+        }
+
+        log("Number of notes: " + count);
     }
 
     /**

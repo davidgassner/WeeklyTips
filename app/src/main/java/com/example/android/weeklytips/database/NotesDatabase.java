@@ -18,8 +18,8 @@ public abstract class NotesDatabase extends RoomDatabase {
 
     public static NotesDatabase getInstance(Context context) {
         if (instance == null) {
-            instance = Room.inMemoryDatabaseBuilder(context.getApplicationContext(),
-                    NotesDatabase.class)
+            instance = Room.databaseBuilder(context.getApplicationContext(),
+                    NotesDatabase.class, "notes-database.db")
                     .allowMainThreadQueries()
                     .build();
         }
