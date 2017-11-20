@@ -18,10 +18,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mLog = (TextView) findViewById(R.id.log);
+        mLog = findViewById(R.id.log);
         mLog.setMovementMethod(new ScrollingMovementMethod());
     }
 
