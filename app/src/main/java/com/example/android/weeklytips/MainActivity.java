@@ -16,12 +16,15 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView mLog;
     private NotesDatabase db;
+    Executor executor = Executors.newSingleThreadExecutor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,22 +55,28 @@ public class MainActivity extends AppCompatActivity {
      */
     public void runCode(View view) {
 
-        int deleted = db.noteDao().deleteAll();
-        log(deleted + " notes deleted");
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                int deleted = db.noteDao().deleteAll();
+                EventBus.getDefault().post(new MessageEvent(deleted + " notes deleted"));
 
-        Note note1 = new Note("This is note 1");
-        Note note2 = new Note("This is note 2");
-        db.noteDao().insertAll(note1, note2);
+                Note note1 = new Note("This is note 1");
+                Note note2 = new Note("This is note 2");
+                db.noteDao().insertAll(note1, note2);
 
-        int count = db.noteDao().getCount();
+                int count = db.noteDao().getCount();
 
-        List<Note> notes = db.noteDao().getAll();
-        for (Note note :
-                notes) {
-            log(note.toString());
-        }
+                List<Note> notes = db.noteDao().getAll();
+                for (Note note :
+                        notes) {
+                    EventBus.getDefault().post(new MessageEvent( note.toString()));
+                }
 
-        log("Number of notes: " + count);
+                EventBus.getDefault().post(new MessageEvent("Number of notes: " + count));
+
+            }
+        });
 
     }
 
