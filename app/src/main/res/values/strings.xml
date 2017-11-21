@@ -2,5 +2,5 @@
     <string name="app_name">Weekly Tips</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">Upgrade to Android Studio 3.0 and Android 8.1 Oreo</string>
+    <string name="intro_text">Execute tasks with JobScheduler</string>
 </resources>

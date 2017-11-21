@@ -1,5 +1,9 @@
 package com.example.android.weeklytips;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -7,6 +11,8 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.android.weeklytips.services.MyJobService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,10 +35,17 @@ public class MainActivity extends AppCompatActivity {
      * Run some code. If the TextView only displays the intro message, clear it first.
      */
     public void runCode(View view) {
-        if (mLog.getText().toString().equals(getString(R.string.intro_text))) {
-            mLog.setText("");
+        JobScheduler jobScheduler =
+                (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        JobInfo jobInfo = new JobInfo.Builder(1001,
+                new ComponentName(this, MyJobService.class))
+                .setMinimumLatency(2000)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                .build();
+        if (jobScheduler != null) {
+            jobScheduler.schedule(jobInfo);
         }
-        log("Running code");
+        Log.i("JobScheduler", "runCode: job is scheduled");
     }
 
     /**
