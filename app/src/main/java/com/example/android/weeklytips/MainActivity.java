@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Clear the output TextView
+     *
      * @param view The button the user clicked
      */
     public void clearLog(View view) {
