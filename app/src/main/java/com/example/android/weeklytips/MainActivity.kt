@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 
@@ -21,13 +23,16 @@ class MainActivity : AppCompatActivity() {
         mLog = findViewById(R.id.log)
         mLog!!.movementMethod = ScrollingMovementMethod()
 
-        findViewById<View>(R.id.run_button).setOnClickListener { runCode(it) }
+        findViewById<View>(R.id.run_button)
+                .setOnClickListener { runCode(it) }
+        findViewById<View>(R.id.clear_button)
+                .setOnClickListener { clearLog() }
     }
 
     /**
      * Run some code. If the TextView only displays the intro message, clear it first.
      */
-    fun runCode(view: View?) {
+    private fun runCode(view: View?) {
         if (mLog!!.text.toString() == getString(R.string.intro_text)) {
             mLog!!.text = ""
         }
@@ -41,7 +46,7 @@ class MainActivity : AppCompatActivity() {
      *
      * @param view The button the user clicked
      */
-    fun clearLog(view: View) {
+    fun clearLog() {
         mLog!!.text = ""
     }
 
@@ -66,6 +71,43 @@ class MainActivity : AppCompatActivity() {
             mLog!!.scrollTo(0, scrollAmount)
         else
             mLog!!.scrollTo(0, 0)
+    }
+
+    /**
+     * Display the options menu
+     */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val itemId = item?.itemId
+        if (itemId == R.id.action_choose_red) {
+            handleRed()
+        } else if (itemId == R.id.action_choose_green)
+            handleGreen()
+        else if (itemId == R.id.action_choose_blue) {
+            handleBlue()
+        } else {
+            return super.onOptionsItemSelected(item)
+        }
+        return true
+    }
+
+    private fun handleRed(): Boolean {
+        log("You selected Red")
+        return true;
+    }
+
+    private fun handleGreen(): Boolean {
+        log("You selected Green")
+        return true
+    }
+
+    private fun handleBlue(): Boolean {
+        log("You selected Blue")
+        return true
     }
 
     companion object {
