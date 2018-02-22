@@ -5,10 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import com.example.android.weeklytips.constants.*
 
 class MainActivity : AppCompatActivity() {
     private var mLog: TextView? = null
@@ -37,9 +36,8 @@ class MainActivity : AppCompatActivity() {
         if (mLog!!.text.toString() == getString(R.string.intro_text)) {
             mLog!!.text = ""
         }
-        log("Running code")
-        log("You click the button with id " +
-                resources.getResourceEntryName(view!!.id))
+
+        log("The answer is $THE_ANSWER")
     }
 
     /**
@@ -78,6 +76,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
 
         private val TAG = "MainActivity"
+
     }
 
 }
