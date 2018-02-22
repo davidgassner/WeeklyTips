@@ -82,17 +82,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val itemId = item?.itemId
-        if (itemId == R.id.action_choose_red) {
-            handleRed()
-        } else if (itemId == R.id.action_choose_green)
-            handleGreen()
-        else if (itemId == R.id.action_choose_blue) {
-            handleBlue()
-        } else {
-            return super.onOptionsItemSelected(item)
+        return when (item?.itemId) {
+            R.id.action_choose_red -> handleRed()
+            R.id.action_choose_green -> handleGreen()
+            R.id.action_choose_blue -> handleBlue()
+            else -> false
         }
-        return true
     }
 
     private fun handleRed(): Boolean {
