@@ -20,16 +20,20 @@ class MainActivity : AppCompatActivity() {
 
         mLog = findViewById(R.id.log)
         mLog!!.movementMethod = ScrollingMovementMethod()
+
+        findViewById<View>(R.id.run_button).setOnClickListener { runCode(it) }
     }
 
     /**
      * Run some code. If the TextView only displays the intro message, clear it first.
      */
-    fun runCode(view: View) {
+    fun runCode(view: View?) {
         if (mLog!!.text.toString() == getString(R.string.intro_text)) {
             mLog!!.text = ""
         }
         log("Running code")
+        log("You click the button with id " +
+                resources.getResourceEntryName(view!!.id))
     }
 
     /**
