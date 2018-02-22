@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Run some code. If the TextView only displays the intro message, clear it first.
+     * Run some code. If the TextView only displays the
+     * intro message, clear it first.
      */
     private fun runCode(view: View?) {
         if (mLog!!.text.toString() == getString(R.string.intro_text)) {
@@ -43,8 +44,6 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Clear the output TextView
-     *
-     * @param view The button the user clicked
      */
     fun clearLog() {
         mLog!!.text = ""
@@ -76,35 +75,6 @@ class MainActivity : AppCompatActivity() {
     /**
      * Display the options menu
      */
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
-            R.id.action_choose_red -> handleRed()
-            R.id.action_choose_green -> handleGreen()
-            R.id.action_choose_blue -> handleBlue()
-            else -> false
-        }
-    }
-
-    private fun handleRed(): Boolean {
-        log("You selected Red")
-        return true;
-    }
-
-    private fun handleGreen(): Boolean {
-        log("You selected Green")
-        return true
-    }
-
-    private fun handleBlue(): Boolean {
-        log("You selected Blue")
-        return true
-    }
-
     companion object {
 
         private val TAG = "MainActivity"
