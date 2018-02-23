@@ -7,7 +7,6 @@ import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import com.example.android.weeklytips.constants.*
 
 class MainActivity : AppCompatActivity() {
     private var mLog: TextView? = null
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         mLog!!.movementMethod = ScrollingMovementMethod()
 
         findViewById<View>(R.id.run_button)
-                .setOnClickListener { runCode(it) }
+                .setOnClickListener { runCode() }
         findViewById<View>(R.id.clear_button)
                 .setOnClickListener { clearLog() }
     }
@@ -32,12 +31,10 @@ class MainActivity : AppCompatActivity() {
      * Run some code. If the TextView only displays the
      * intro message, clear it first.
      */
-    private fun runCode(view: View?) {
+    private fun runCode() {
         if (mLog!!.text.toString() == getString(R.string.intro_text)) {
             mLog!!.text = ""
         }
-
-        log("The answer is $THE_ANSWER")
     }
 
     /**
