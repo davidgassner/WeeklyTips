@@ -37,9 +37,22 @@ class MainActivity : AppCompatActivity() {
             mLog!!.text = ""
         }
 
-        val shirt = ClothingItem(SHIRT)
-        shirt.price = 19.99
+        val shirt = Shirt(25.00)
         log(shirt.toString())
+        val pants = Pants(24.99)
+        log(pants.toString())
+
+        val mostExpensive =
+                if (shirt.price > pants.price) shirt else pants
+
+        val instructions =
+                when (mostExpensive) {
+                    is Shirt -> "Button it"
+                    is Pants -> "Buckle it"
+                }
+
+        log("Most expensive: ${mostExpensive}")
+        log(instructions)
     }
 
     /**
