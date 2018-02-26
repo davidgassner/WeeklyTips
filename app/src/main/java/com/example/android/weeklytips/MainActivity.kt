@@ -43,14 +43,8 @@ class MainActivity : AppCompatActivity() {
         shoppingCart.add(LineItem(Shirt(19.99), 1))
         shoppingCart.add(LineItem(Pants(29.99), 2))
 
-        var total = 0.0
-        for (lineItem in shoppingCart) {
-            val subTotal = lineItem.clothingItem.price *
-                    lineItem.quantity
-            total += subTotal
-        }
-        log("Shopping cart value: $total")
     }
+
 
     /**
      * Clear the output TextView

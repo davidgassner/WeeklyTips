@@ -1,0 +1,60 @@
+package com.example.android.weeklytips.utilities
+
+class DataProvider {
+
+    companion object {
+        fun getStateList(): List<String> =
+                listOf(
+                        "Nevada",
+                        "Louisiana",
+                        "Michigan",
+                        "Arkansas",
+                        "Connecticut",
+                        "Florida",
+                        "Illinois",
+                        "Kansas",
+                        "Georgia",
+                        "North Carolina",
+                        "Delaware",
+                        "Arizona",
+                        "Tennessee",
+                        "Idaho",
+                        "Alabama",
+                        "Missouri",
+                        "Virginia",
+                        "South Dakota",
+                        "Mississippi",
+                        "Indiana",
+                        "Maryland",
+                        "Iowa",
+                        "New York",
+                        "Rhode Island",
+                        "Kentucky",
+                        "Alaska",
+                        "Hawaii",
+                        "Wyoming",
+                        "Colorado",
+                        "Montana",
+                        "Utah",
+                        "Washington",
+                        "Nebraska",
+                        "Wisconsin",
+                        "California",
+                        "Minnesota",
+                        "Maine",
+                        "New Jersey",
+                        "New Mexico",
+                        "North Dakota",
+                        "Massachusetts",
+                        "Ohio",
+                        "West Virginia",
+                        "South Carolina ",
+                        "New Hampshire",
+                        "Oklahoma",
+                        "Oregon",
+                        "Pennsylvania",
+                        "Texas",
+                        "Vermont"
+                )
+    }
+}
