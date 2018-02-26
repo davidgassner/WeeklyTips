@@ -7,7 +7,6 @@ import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import com.example.android.weeklytips.ClothingItem.ClothingType.SHIRT
 
 class MainActivity : AppCompatActivity() {
     private var mLog: TextView? = null
@@ -36,23 +35,6 @@ class MainActivity : AppCompatActivity() {
         if (mLog!!.text.toString() == getString(R.string.intro_text)) {
             mLog!!.text = ""
         }
-
-        val shirt = Shirt(25.00)
-        log(shirt.toString())
-        val pants = Pants(24.99)
-        log(pants.toString())
-
-        val mostExpensive =
-                if (shirt.price > pants.price) shirt else pants
-
-        val instructions =
-                when (mostExpensive) {
-                    is Shirt -> "Button it"
-                    is Pants -> "Buckle it"
-                }
-
-        log("Most expensive: ${mostExpensive}")
-        log(instructions)
     }
 
     /**
