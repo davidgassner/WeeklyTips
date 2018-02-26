@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.example.android.weeklytips.model.LineItem
 import com.example.android.weeklytips.model.Pants
 import com.example.android.weeklytips.model.Shirt
+import com.example.android.weeklytips.utilities.DataProvider
 
 class MainActivity : AppCompatActivity() {
     private var mLog: TextView? = null
@@ -42,6 +43,22 @@ class MainActivity : AppCompatActivity() {
         val shoppingCart = mutableListOf<LineItem>()
         shoppingCart.add(LineItem(Shirt(19.99), 1))
         shoppingCart.add(LineItem(Pants(29.99), 2))
+        shoppingCart.sortBy { it.clothingItem.clothingType.toString() }
+        for (item in shoppingCart) {
+            log(item.clothingItem.clothingType.toString())
+        }
+        val total = shoppingCart
+                .map { it.clothingItem.price * it.quantity }
+                .sum()
+        log("Shopping cart value: $total")
+
+        val stateList = DataProvider.getStateList()
+        log("There are ${stateList.size} states")
+
+//        val sortedList = stateList.sortedDescending()
+//        for (state in sortedList) {
+//            log(state)
+//        }
 
     }
 
