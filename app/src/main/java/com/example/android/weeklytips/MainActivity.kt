@@ -7,6 +7,7 @@ import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import com.example.android.weeklytips.model.ClothingItem
 import com.example.android.weeklytips.model.LineItem
 import com.example.android.weeklytips.model.Pants
 import com.example.android.weeklytips.model.Shirt
@@ -40,6 +41,9 @@ class MainActivity : AppCompatActivity() {
             mLog!!.text = ""
         }
 
+        val stateList = DataProvider.getStateList()
+        log("There are ${stateList.size} states")
+
         val shoppingCart = mutableListOf<LineItem>()
         shoppingCart.add(LineItem(Shirt(19.99), 1))
         shoppingCart.add(LineItem(Pants(29.99), 2))
@@ -47,9 +51,6 @@ class MainActivity : AppCompatActivity() {
                 .map { it.clothingItem.price * it.quantity }
                 .sum()
         log("Shopping cart value: $total")
-
-        val stateList = DataProvider.getStateList()
-        log("There are ${stateList.size} states")
 
     }
 
