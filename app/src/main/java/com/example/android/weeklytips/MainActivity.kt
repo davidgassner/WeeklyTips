@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
     /**
      * Clear the output TextView
      */
