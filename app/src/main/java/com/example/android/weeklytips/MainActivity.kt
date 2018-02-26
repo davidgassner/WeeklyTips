@@ -7,6 +7,9 @@ import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import com.example.android.weeklytips.model.LineItem
+import com.example.android.weeklytips.model.Pants
+import com.example.android.weeklytips.model.Shirt
 
 class MainActivity : AppCompatActivity() {
     private var mLog: TextView? = null
@@ -35,6 +38,18 @@ class MainActivity : AppCompatActivity() {
         if (mLog!!.text.toString() == getString(R.string.intro_text)) {
             mLog!!.text = ""
         }
+
+        val shoppingCart = mutableListOf<LineItem>()
+        shoppingCart.add(LineItem(Shirt(19.99), 1))
+        shoppingCart.add(LineItem(Pants(29.99), 2))
+
+        var total = 0.0
+        for (lineItem in shoppingCart) {
+            val subTotal = lineItem.clothingItem.price *
+                    lineItem.quantity
+            total += subTotal
+        }
+        log("Shopping cart value: $total")
     }
 
     /**
