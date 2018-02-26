@@ -1,4 +1,4 @@
-package com.example.android.weeklytips
+package com.example.android.weeklytips.model
 
 sealed class ClothingItem(val clothingType: ClothingType) {
 
