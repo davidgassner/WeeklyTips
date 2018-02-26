@@ -43,6 +43,12 @@ class MainActivity : AppCompatActivity() {
 
         val stateList = DataProvider.getStateList()
         log("There are ${stateList.size} states")
+        val filteredList = stateList
+                .filter { it.startsWith("M") }
+                .sortedBy { it.length }
+        for (state in filteredList) {
+            log(state)
+        }
 
         val shoppingCart = mutableListOf<LineItem>()
         shoppingCart.add(LineItem(Shirt(19.99), 1))
@@ -52,6 +58,11 @@ class MainActivity : AppCompatActivity() {
                 .sum()
         log("Shopping cart value: $total")
 
+        val filteredCart = shoppingCart
+                .filter { it.clothingItem.clothingType ==
+                        ClothingItem.ClothingType.SHIRT }
+        val item = filteredCart[0]
+        log(item.toString())
     }
 
     /**
