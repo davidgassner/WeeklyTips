@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         mLog = findViewById(R.id.log)
         mLog!!.movementMethod = ScrollingMovementMethod()
+
     }
 
     /**
