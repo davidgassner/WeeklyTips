@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
             mLog!!.text = ""
         }
         log("Running code")
+
+        mLog!!.flipVisibility()
     }
 
     /**
