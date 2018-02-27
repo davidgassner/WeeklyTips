@@ -2,5 +2,5 @@
     <string name="app_name">Weekly Tips</string>
     <string name="title_run_code">Run code</string>
     <string name="title_clear">Clear log</string>
-    <string name="intro_text">Use the Android KTX extension functions library</string>
+    <string name="intro_text">Use a virtual device with Google Play</string>
 </resources>
