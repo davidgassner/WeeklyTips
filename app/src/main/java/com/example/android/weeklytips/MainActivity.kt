@@ -1,5 +1,6 @@
 package com.example.android.weeklytips
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -7,6 +8,8 @@ import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import androidx.content.edit
+import androidx.net.toUri
 
 class MainActivity : AppCompatActivity() {
     private var mLog: TextView? = null
@@ -32,7 +35,16 @@ class MainActivity : AppCompatActivity() {
         }
         log("Running code")
 
-        mLog!!.flipVisibility()
+//        mLog!!.flipVisibility()
+
+        val url = "http://android.com/action/edit"
+        val uri = url.toUri()
+        log("URI set: $uri")
+
+        val preferences = getPreferences(Context.MODE_PRIVATE)
+        preferences.edit { putString("FIRST_NAME", "David") }
+        val firstName = preferences.getString("FIRST_NAME", "")
+        log("Welcome, $firstName")
     }
 
     /**
